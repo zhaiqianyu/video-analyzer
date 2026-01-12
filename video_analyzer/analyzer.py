@@ -54,6 +54,14 @@ class VideoAnalyzer:
 
     def analyze_frame(self, frame: Frame) -> Dict[str, Any]:
         """Analyze a single frame using the LLM."""
+        # Check if frame file exists before analysis
+        if not frame.path.exists():
+            error_msg = f"Frame file does not exist: {frame.path} (frame {frame.number})"
+            logger.error(error_msg)
+            error_result = {"response": f"Error analyzing frame {frame.number}: {error_msg}"}
+            self.previous_analyses.append(error_result)
+            return error_result
+        
         # Replace {PREVIOUS_FRAMES} token with formatted previous analyses
         # Replace tokens in the prompt template
         prompt = self.frame_prompt.replace("{PREVIOUS_FRAMES}", self._format_previous_analyses())

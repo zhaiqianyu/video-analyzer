@@ -1,98 +1,207 @@
-Video Summary Instructions
-Available Materials
-Frame 1 of the video (viewable)
+医美短视频爆款机制分析总结指令（Video-Level Analysis）
 
-Available Materials
-Complete set of chronological frame descriptions from all previous viewers
+你正在分析一个【医美类短视频】的完整内容，目标是回答：「这条视频为什么可能成为爆款？」
+
+可用素材：
+- 第一帧画面（可直接查看）
+- 所有帧的逐帧分析记录（按时间顺序）
+- 视频音频转写文本（如果有）
 
 {FRAME_NOTES}
 
-Video Transcript
-
 {TRANSCRIPT}
-
-
-
-Your Task
-You are synthesizing multiple frame descriptions into a cohesive video summary. You have access to the first frame and detailed notes about all subsequent frames.
-Step 1: Review Process
-
-First Frame Analysis
-
-Study your available frame in detail
-Note opening composition, characters, and setting
-Identify the initial tone and context
-
-
-Notes Review
-
-Read through all frame descriptions chronologically
-Mark key transitions and major developments
-Identify narrative patterns and themes
-Note any inconsistencies or gaps in descriptions
-
-
-
-Step 2: Synthesis Guidelines
-Create your summary following this structure:
-
-Opening Description
-
-Begin with what you can directly verify from your frame
-Establish the initial setting, characters, and situation
-
-
-Narrative Development
-
-Build the story chronologically
-Connect scenes and transitions naturally
-Maintain consistent character descriptions
-Track significant object movements and changes
-Include relevant audio elements mentioned in notes
-
-
-Technical Elements
-
-Note camera movements described
-Include editing transitions
-Reference significant visual effects
-Mention notable lighting or composition changes
-
-
-
-Writing Style Guidelines
-
-Write in present tense
-Use clear, active voice
-Maintain objective descriptions
-Avoid speculation beyond provided notes
-Include specific details that build credibility
-Connect scenes with smooth transitions
-Maintain consistent tone throughout
-
-Quality Check
-Before submitting, verify:
-
-The summary flows naturally
-No contradictions exist between sections
-All major elements from notes are included
-The narrative is coherent for someone who hasn't seen the video
-Technical terms are used correctly
-The opening matches your viewed frame
-Transitions between described frames feel natural
 
 {prompt}
 
-Format Your Summary As:
+你的任务：
+基于上述素材，从「爆款机制拆解」的角度，输出一份结构化的分析报告，回答「为什么这条视频可能火」。
 
-```
-IDEO SUMMARY
-Duration: [if provided in notes]
+分析维度与输出结构：
 
-[Opening paragraph - based on your viewed frame]
+---
 
-[Main body - chronological progression from notes]
+## 一、结构分析（Story Structure Analysis）
 
-[Closing observations - final state/resolution]
+### 1.1 开头 3 秒钩子
+- **钩子类型**：提问型 / 反差型 / 恐惧型 / 结果先给型 / 案例冲击型 / 其他
+- **钩子强度**：强 / 中 / 弱（说明理由）
+- **具体表现**：描述开头 3 秒内画面与文案如何制造好奇或冲突
 
-Note: This summary is based on direct observation of the first frame combined with detailed notes from subsequent frames.
+### 1.2 冲突点 / 痛点
+- **痛点定位**：这条视频直击了哪些目标用户的痛点？
+  - 例如：显老、不自然、修复失败、价格焦虑、效果不持久、恢复期长等
+- **痛点呈现方式**：通过什么方式呈现痛点？
+  - 字幕文字 / 表情演绎 / 案例对比 / 数据对比 / 用户自述等
+- **痛点强度**：痛点刺激的强度如何？是否足够让目标用户产生“我也需要”的冲动？
+
+### 1.3 反转 / 认知颠覆
+- **是否有反转**：是 / 否
+- **反转形式**：前后对比 / 认知颠覆（如“你以为的 vs 实际”）/ 结果超出预期 / 其他
+- **反转时机**：反转发生在视频的哪个时间段（开头/中段/结尾）？
+- **反转效果**：反转是否足够震撼，能形成记忆点？
+
+### 1.4 结尾转化引导
+- **转化引导方式**：预约咨询 / 私信咨询 / 评论互动 / 关注账号 / 到店体验 / 其他
+- **转化引导强度**：强 / 中 / 弱（说明理由）
+- **是否自然**：转化引导是否与内容自然融合，还是显得生硬？
+
+---
+
+## 二、文案分析（Copywriting Analysis）
+
+### 2.1 标题结构
+- **标题类型**（可多选）：
+  - 提问型（如：“为什么她做了双眼皮却像没做？”）
+  - 反差型（如：“30岁像50岁，做完这个项目后像20岁”）
+  - 恐惧型（如：“这些医美项目千万别做，会毁脸”）
+  - 好处承诺型（如：“不肿不痛，3天恢复自然”）
+  - 经验分享型（如：“做了3次热玛吉，我总结出这些坑”）
+  - 专业科普型（如：“医生告诉你：线雕和热玛吉的区别”）
+  - 案例揭秘型（如：“这个案例为什么失败？我拆解给你看”）
+
+### 2.2 高频关键词
+- **核心关键词列表**：列出视频中出现频率较高的关键词（至少 5-10 个）
+- **关键词分类**：
+  - 项目相关：如“热玛吉”“线雕”“玻尿酸”“双眼皮”等
+  - 效果相关：如“自然”“不肿”“持久”“隐形”等
+  - 痛点相关：如“显老”“不自然”“失败”“副作用”等
+  - 信任相关：如“院长”“进口”“专业”“案例”等
+
+### 2.3 情绪词占比
+- **情绪倾向分析**：
+  - 焦虑/恐惧占比：___%
+  - 安心/信任占比：___%
+  - 兴奋/惊喜占比：___%
+  - 后悔/自嘲占比：___%
+  - 理性科普占比：___%
+- **整体情绪策略**：这条视频主要靠“情绪刺激”还是“理性说服”来打动用户？
+
+### 2.4 医美专属表达模式
+- **使用的医美圈话术**：列出视频中出现的医美行业常见表达
+  - 例如：“术前/术后”“院长亲诊”“进口材料”“轻医美”“恢复期”“维持时间”“案例”“效果对比”等
+- **话术使用是否专业**：是 / 否（说明理由）
+
+---
+
+## 三、音频分析（Audio Analysis）
+
+### 3.1 语速与语气
+- **语速**：快 / 中 / 慢（可结合转写文本估算每分钟字数）
+- **语气特点**：专业严肃 / 亲切自然 / 激情澎湃 / 冷静理性 / 其他
+- **是否真人讲解**：是真人出镜讲解 / 旁白配音 / AI 配音 / 其他
+
+### 3.2 情绪起伏
+- **情绪曲线**：描述视频中情绪起伏的变化（可用时间轴标注）
+  - 例如：开头高能（制造冲突）→ 中段冷静（专业解释）→ 结尾激昂（转化引导）
+- **情绪高潮点**：视频中情绪最高潮出现在哪个时间段？为什么？
+
+### 3.3 音频与画面配合度
+- **音画同步度**：音频与画面是否配合良好？
+- **音频是否增强钩子**：音频（包括背景音乐、音效）是否增强了视频的钩子效果？
+
+---
+
+## 四、视觉分析（Visual Analysis）
+
+### 4.1 画面主体类型
+- **主要呈现形式**：
+  - 真人出镜（医生 / 护士 / 咨询师 / 用户本人 / 网红 KOL）
+  - PPT/文字板/对话框截图/聊天记录
+  - 案例对比（前后对比 / 多例对比 / 动态变化过程）
+  - 混合形式（说明各占比例）
+
+### 4.2 身份与角色识别
+- **视频视角**：医生视角 / 用户自述 / 机构广告 / 素人体验分享 / 其他
+- **身份可信度**：视频中呈现的身份是否增强了可信度？如何体现的？
+
+### 4.3 案例对比方式
+- **对比形式**：前后对比（before/after）/ 多角度对比 / 动态变化过程 / 数据对比 / 其他
+- **对比效果**：对比是否足够直观、震撼？
+- **对比真实性**：对比是否显得真实可信？（注意：不要判断是否真实，只判断“呈现出的可信度”）
+
+### 4.4 镜头节奏
+- **整体节奏**：快切 / 中等节奏 / 慢节奏 / 节奏变化明显
+- **镜头语言**：特写 / 中景 / 全景 / 推拉镜头 / 定格 / 其他
+- **节奏与内容匹配度**：镜头节奏是否与内容情绪匹配？
+
+---
+
+## 五、爆款创作思路输出（Viral Formula & Insights）
+
+### 5.1 爆款公式提炼
+基于以上分析，提炼出这条视频的「爆款公式」：
+
+**公式结构**：[痛点/冲突] → [解决方案/案例展示] → [专业背书/信任建立] → [行动引导]
+
+**具体拆解**：
+- 第一步（开头钩子）：...
+- 第二步（核心内容）：...
+- 第三步（信任建立）：...
+- 第四步（转化引导）：...
+
+### 5.2 适用项目类型
+这条视频的创作思路适合推广哪些医美项目？
+- **适合的项目**：列出 3-5 个适合的项目类型（如：轻医美项目、手术类项目、修复类项目等）
+- **不适合的项目**：列出 1-2 个不太适合的项目类型（说明理由）
+
+### 5.3 风险点提示（合规风险）
+基于对视频内容的分析，指出可能存在的**合规风险点**：
+
+- **夸大宣传风险**：
+  - 是否存在夸大效果、承诺“永久”“无副作用”等表述？
+  - 是否存在“保证效果”“100% 成功”等绝对化表述？
+
+- **医疗广告违规风险**：
+  - 是否出现医生姓名、医院名称、设备品牌等可能涉及医疗广告的内容？
+  - 是否使用“最佳”“第一”等排名类表述？
+
+- **用户误导风险**：
+  - 是否存在过度渲染焦虑、制造容貌焦虑的倾向？
+  - 是否对项目风险、恢复期、副作用等信息披露不足？
+
+- **其他风险**：
+  - 其他可能违反平台规则或法律法规的表述
+
+### 5.4 优化建议
+基于分析，给出 2-3 条优化建议：
+- 建议 1：...
+- 建议 2：...
+- 建议 3：...
+
+---
+
+## 六、综合评分（Overall Assessment）
+
+### 6.1 爆款潜力评分（1-10 分）
+- **钩子强度**：___/10
+- **内容价值**：___/10
+- **信任度**：___/10
+- **转化力**：___/10
+- **综合潜力**：___/10
+
+### 6.2 核心优势
+列出这条视频最核心的 3 个优势（为什么可能火）：
+1. ...
+2. ...
+3. ...
+
+### 6.3 核心劣势
+列出这条视频最核心的 2-3 个劣势（可能影响传播的因素）：
+1. ...
+2. ...
+3. ...
+
+---
+
+## 输出格式要求
+
+请严格按照以上结构输出分析报告，使用中文，保持客观、专业、结构化的表达。每个部分都要有具体的内容，不要只写标题。
+
+如果某些信息无法从提供的素材中获取（如音频转写缺失），请在对应部分标注「信息不足，无法分析」。
+
+---
+
+**注意**：
+- 本分析仅基于提供的画面和音频转写，不涉及对视频真实性的判断
+- 风险点提示仅用于帮助创作者规避合规风险，不代表视频实际违规
+- 爆款潜力评分仅供参考，实际传播效果受平台算法、发布时间、目标受众等多种因素影响

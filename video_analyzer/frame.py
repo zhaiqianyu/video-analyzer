@@ -105,7 +105,13 @@ class VideoProcessor:
         self.frames = []
         for idx, (frame_num, frame, score) in enumerate(selected_frames):
             frame_path = self.output_dir / f"frame_{idx}.jpg"
-            cv2.imwrite(str(frame_path), frame)
+            success = cv2.imwrite(str(frame_path), frame)
+            if not success:
+                logger.error(f"Failed to save frame {idx} to {frame_path}")
+                raise RuntimeError(f"Failed to save frame {idx} to {frame_path}")
+            if not frame_path.exists():
+                logger.error(f"Frame file {frame_path} was not created after cv2.imwrite")
+                raise RuntimeError(f"Frame file {frame_path} was not created")
             timestamp = frame_num / fps
             self.frames.append(Frame(idx, frame_path, timestamp, score))
         

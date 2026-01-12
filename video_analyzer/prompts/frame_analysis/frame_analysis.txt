@@ -1,65 +1,86 @@
-Frame Description Instructions
-Previous Notes Section
-[Previous frame descriptions will appear here in chronological order]
+医美短视频逐帧结构分析指令（Frame-Level Instructions）
+
+你正在分析一个【医美类短视频】的某一帧画面。
+你的任务不是简单描述画面，而是从「这条视频为什么有可能成为爆款」的角度，记录对这一帧的**结构与视觉关键信息**，为后续整条视频的“爆款机制拆解”提供素材。
+
+上文是前面帧的分析记录（按时间顺序）——仅供你理解上下文：
 
 {PREVIOUS_FRAMES}
 
-Your Tasks
-You are viewing Frame [X] of this video sequence. Your goal is to document what you observe in a way that contributes to a coherent narrative of the entire video.
-Step 1: Quick Scan
-
-Watch for key changes from the previous descriptions
-Note any new elements or developments
-Identify if this is a transition moment or continuation
-
-Step 2: Document Your Frame
-Follow this structure for your notes:
-
-Setting/Scene (if changed from previous)
-
-Only describe if there's a notable change from previous frames
-Include any new environmental details
-
-
-Action/Movement
-
-What is happening in this specific moment?
-Focus on motion and changes
-Note the direction of movement
-Describe gestures or expressions
-
-
-New Information
-
-Document any new objects, people, or text that appears
-Note any changes in audio described in previous frames
-Record any new dialogue or text shown
-
-
-Continuity Points
-
-Connect your observations to previous notes
-Highlight how this frame advances the narrative
-Note if something mentioned in previous frames is no longer visible
-
-
-
-Writing Guidelines
-
-Use present tense
-Be specific and concise
-Avoid interpretation - stick to what you can see
-Use clear transitional phrases to connect to previous descriptions
-Include timestamp if available
-
 {prompt}
 
-Format Your Notes As:
+请基于当前帧，从下面几个维度进行结构化观察（允许合理推断，但不要胡编细节）：
+
+1. 结构节奏相关（与时间线关联）
+- **是否构成开头 3 秒钩子的一部分**：
+  - 这一帧里的信息强度如何？是否在“制造好奇 / 冲突 / 痛点 / 反差”？
+  - 有没有「结果先给出」「先展示术后效果再解释」等强钩子形式？
+- **冲突点 / 痛点呈现**：
+  - 是否在直击目标用户的痛点（如：变老、显老、不精致、不自然、修复失败等）？
+  - 痛点是通过【字幕文字】、【表情】还是【案例画面对比】体现？
+- **反转 / 认知颠覆的铺垫**：
+  - 当前画面是在“反转前的铺垫”还是“反转瞬间”还是“反转之后的结果展示”？
+- **结尾转化引导线索（若接近视频尾部）**：
+  - 画面里是否出现预约、私信、咨询等导流动作或暗示？
+
+2. 文案与信息承载方式（如果画面中有字幕 / 文字 / UI 元素）
+- **字幕/标题结构类型**（可多选，用中文标注）：
+  - 提问型 / 反差型 / 恐惧型 / 好处承诺型 / 经验分享型 / 专业科普型 / 案例揭秘型
+- **高频关键词**：
+  - 标注画面中能看到的核心词（例如：“不肿胀”“自然”“修复”“初老”“隐形整形”“副作用”“维持时间”等）。
+- **情绪词占比判断**：
+  - 这一帧出现的文字或可推断的语言中，情绪倾向偏向：焦虑/恐惧、安心/信任、兴奋/惊喜、后悔、自嘲、理性科普 等？
+  - 粗略说明：是以“情绪刺激”为主，还是“理性信息”为主？
+- **医美专属表达模式**：
+  - 是否使用医美圈常见话术（如“术前/术后”“院长亲诊”“进口材料”“轻医美”“项目名缩写”等）？
+
+3. 视觉呈现形式
+- **画面主体类型**：
+  - 真人出镜（医生 / 护士 / 咨询师 / 用户本人 / 网红 KOL）
+  - PPT/文字板/对话框截图/聊天记录
+  - 案例对比（前后对比 / 多例对比 / 动态变化过程）
+- **身份与角色识别（如果能判断）**：
+  - 当前画面更像是“医生视角”“用户自述”“机构广告”“素人体验分享”中的哪一种？
+- **案例对比方式**：
+  - 是否出现前后对比（before/after）、多角度对比、慢动作放大细节等？
+- **镜头节奏感**：
+  - 当前帧所处的镜头节奏：快切/慢节奏/定格特写/推拉镜头等。
+  - 与上一些帧对比，是在“节奏提升”“情绪高潮”“信息密度提升”还是“给观众留白消化”？
+
+4. 与“爆款潜力”相关的即时判断（仅针对当前帧）
+- **钩子力度初判**：
+  - 这一帧是否具有「一眼抓住医美目标用户」的能力？为什么？
+- **专业可信度信号**：
+  - 是否给到“专业背书”的线索（白大褂、门牌、荣誉墙、术前设计图、设备细节等）？
+- **转化引导前兆**：
+  - 是否有明显为后面“加私信/评论/到店咨询”做铺垫的元素？
+
+请按照下面格式输出本帧分析（中文作答，可使用简洁小标题和项目符号）：
 
 ```
-Frame [X] If there are no existing frames you are Frame 0, otherwise you're the next frame
-[Your observations following the structure above]
-Key continuation points:
-- [List 2-3 elements that the next viewer should particularly watch for]
+【帧信息】
+- 时间位置：当前帧约在整条视频中的相对位置（如：开头钩子 / 中段讲解 / 结尾引导）
 
+【结构与情节角色】
+- 此帧在整体结构中的作用：...
+- 与前面画面的衔接：...
+
+【文案与信息要点】
+- 标题/字幕结构类型：...
+- 高频关键词：...
+- 情绪词与情绪方向：...
+- 医美专属表达模式：...
+
+【视觉要素】
+- 主体身份与出镜形式：...
+- 案例/对比呈现方式：...
+- 镜头与节奏特征：...
+
+【与爆款相关的即时判断】
+- 对目标用户的痛点/好处刺激点：...
+- 专业感与信任感信号：...
+- 是否在为后续转化做铺垫：...
+
+【建议下一帧关注点】
+- 建议重点观察后续画面会不会：展示完整案例结果 / 给出专业解释 / 给出行动指令 / 做风险说明 等。
 ```

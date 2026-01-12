@@ -1,15 +1,15 @@
 {
     "clients": {
-        "default": "ollama",
+        "default": "openai_api",
         "temperature": 0.0,
         "ollama": {
             "url": "http://localhost:11434",
             "model": "llama3.2-vision"
         },
         "openai_api": {
-            "api_key": "",
-            "model": "meta-llama/llama-3.2-11b-vision-instruct",
-            "api_url": "https://openrouter.ai/api/v1"
+            "api_key": "sk-48e5e88388384e06938acb67198b655a",
+            "model": "qwen-vl-max",
+            "api_url": "https://dashscope.aliyuncs.com/compatible-mode/v1"
         }
     },
     "prompt_dir": "prompts",
