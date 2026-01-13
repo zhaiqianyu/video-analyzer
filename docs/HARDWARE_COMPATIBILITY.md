@@ -247,3 +247,9 @@ video-analyzer test_short.mp4 --max-frames 5
 
 
 
+
+
+
+
+
+

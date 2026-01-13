@@ -29,12 +29,12 @@
     ],
     "output_dir": "output",
     "frames": {
-        "per_minute": 60,
+        "per_minute": 30,
         "analysis_threshold": 10.0,
         "min_difference": 5.0,
         "max_count": 30,
         "start_stage": 1,
-        "max_frames": 2147483647
+        "max_frames": 50
     },
     "response_length": {
         "frame": 300,
@@ -42,24 +42,24 @@
         "narrative": 500
     },
     "audio": {
-        "whisper_model": "medium",
+        "whisper_model": "small",
         "sample_rate": 16000,
         "channels": 1,
         "quality_threshold": 0.2,
         "chunk_length": 30,
         "language_confidence_threshold": 0.8,
-        "language": "en",
+        "language": "zh",
         "device": "cpu"
     },
     "keep_frames": false,
     "prompt": "",
     "two_stage_analysis": {
-        "enabled": false,
+        "enabled": true,
         "small_model": {
             "client": "ollama",
             "model": "llama3.2-vision",
-            "importance_threshold": 6,
-            "max_frames_for_deep_analysis": 10
+            "importance_threshold": 7,
+            "max_frames_for_deep_analysis": 5
         },
         "large_model": {
             "client": "openai_api",
@@ -67,3 +67,4 @@
         }
     }
 }
+

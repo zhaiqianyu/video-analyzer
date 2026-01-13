@@ -110,6 +110,8 @@ def main():
         frames = []
         frame_analyses = []
         video_description = None
+        screening_results = []  # Initialize for two-stage analysis
+        analyzer = None  # Initialize analyzer variable
         
         # Stage 1: Frame and Audio Processing
         if args.start_stage <= 1:
@@ -152,20 +154,65 @@ def main():
             
         # Stage 2: Frame Analysis
         if args.start_stage <= 2:
-            logger.info(f"Analyzing {len(frames)} frames...")
-            analyzer = VideoAnalyzer(
-                client, 
-                model, 
-                prompt_loader,
-                config.get("clients", {}).get("temperature", 0.2),
-                config.get("prompt", "")
-            )
-            frame_analyses = []
-            for idx, frame in enumerate(frames, 1):
-                logger.info(f"Analyzing frame {idx}/{len(frames)} (frame {frame.number})...")
-                analysis = analyzer.analyze_frame(frame)
-                frame_analyses.append(analysis)
-            logger.info(f"Completed analyzing {len(frame_analyses)} frames")
+            two_stage_config = config.get("two_stage_analysis", {})
+            two_stage_enabled = two_stage_config.get("enabled", False)
+            screening_results = []
+            
+            if two_stage_enabled:
+                logger.info("Two-stage analysis enabled: using small model for screening, large model for deep analysis")
+                
+                # Create small model client
+                small_model_config = two_stage_config.get("small_model", {})
+                small_client_type = small_model_config.get("client", "ollama")
+                small_model = small_model_config.get("model", "llama3.2-vision")
+                
+                if small_client_type == "ollama":
+                    small_client = OllamaClient(config.get("clients", {}).get("ollama", {}).get("url", "http://localhost:11434"))
+                elif small_client_type == "openai_api":
+                    small_api_config = config.get("clients", {}).get("openai_api", {})
+                    # Allow override from small_model config
+                    small_api_key = small_model_config.get("api_key") or small_api_config.get("api_key")
+                    small_api_url = small_model_config.get("api_url") or small_api_config.get("api_url")
+                    if not small_api_key or not small_api_url:
+                        raise ValueError("API key and URL required for small model when using openai_api client")
+                    small_client = GenericOpenAIAPIClient(small_api_key, small_api_url)
+                else:
+                    raise ValueError(f"Unknown small model client type: {small_client_type}")
+                
+                logger.info(f"Small model: {small_model} (client: {small_client_type})")
+                logger.info(f"Large model: {model} (client: {config.get('clients', {}).get('default')})")
+                
+                # Create analyzer with two-stage support
+                analyzer = VideoAnalyzer(
+                    client, 
+                    model, 
+                    prompt_loader,
+                    config.get("clients", {}).get("temperature", 0.2),
+                    config.get("prompt", ""),
+                    two_stage_config=two_stage_config,
+                    small_client=small_client,
+                    small_model=small_model
+                )
+                
+                # Use two-stage analysis
+                frame_analyses, screening_results = analyzer.analyze_frames_two_stage(frames)
+                logger.info(f"Completed two-stage analysis: {len([a for a in frame_analyses if a and a.get('analyzed_by') != 'small_model_only'])} frames deep analyzed, "
+                           f"{len([a for a in frame_analyses if a and a.get('analyzed_by') == 'small_model_only'])} frames screened only")
+            else:
+                logger.info(f"Analyzing {len(frames)} frames with single-stage approach...")
+                analyzer = VideoAnalyzer(
+                    client, 
+                    model, 
+                    prompt_loader,
+                    config.get("clients", {}).get("temperature", 0.2),
+                    config.get("prompt", "")
+                )
+                frame_analyses = []
+                for idx, frame in enumerate(frames, 1):
+                    logger.info(f"Analyzing frame {idx}/{len(frames)} (frame {frame.number})...")
+                    analysis = analyzer.analyze_frame(frame)
+                    frame_analyses.append(analysis)
+                logger.info(f"Completed analyzing {len(frame_analyses)} frames")
                 
         # Stage 3: Video Reconstruction
         if args.start_stage <= 3:
@@ -175,19 +222,43 @@ def main():
             )
         
         output_dir.mkdir(parents=True, exist_ok=True)
-        results = {
-            "metadata": {
+        
+        # Prepare metadata
+        two_stage_config = config.get("two_stage_analysis", {})
+        two_stage_enabled = two_stage_config.get("enabled", False)
+        
+        metadata = {
+            "client": config.get("clients", {}).get("default"),
+            "model": model,
+            "whisper_model": config.get("audio", {}).get("whisper_model"),
+            "frames_per_minute": config.get("frames", {}).get("per_minute"),
+            "duration_processed": config.get("duration"),
+            "frames_extracted": len(frames),
+            "frames_processed": min(len(frames), args.max_frames),
+            "start_stage": args.start_stage,
+            "audio_language": transcript.language if transcript else None,
+            "transcription_successful": transcript is not None,
+            "two_stage_analysis_enabled": two_stage_enabled
+        }
+        
+        if two_stage_enabled:
+            small_model_config = two_stage_config.get("small_model", {})
+            metadata["small_model"] = {
+                "client": small_model_config.get("client"),
+                "model": small_model_config.get("model"),
+                "importance_threshold": small_model_config.get("importance_threshold"),
+                "max_frames_for_deep_analysis": small_model_config.get("max_frames_for_deep_analysis")
+            }
+            metadata["large_model"] = {
                 "client": config.get("clients", {}).get("default"),
-                "model": model,
-                "whisper_model": config.get("audio", {}).get("whisper_model"),
-                "frames_per_minute": config.get("frames", {}).get("per_minute"),
-                "duration_processed": config.get("duration"),
-                "frames_extracted": len(frames),
-                "frames_processed": min(len(frames), args.max_frames),
-                "start_stage": args.start_stage,
-                "audio_language": transcript.language if transcript else None,
-                "transcription_successful": transcript is not None
-            },
+                "model": model
+            }
+            deep_analyzed_count = len([a for a in frame_analyses if a and a.get('analyzed_by') != 'small_model_only'])
+            metadata["frames_deep_analyzed"] = deep_analyzed_count
+            metadata["frames_screened_only"] = len(frames) - deep_analyzed_count
+        
+        results = {
+            "metadata": metadata,
             "transcript": {
                 "text": transcript.text if transcript else None,
                 "segments": transcript.segments if transcript else None
@@ -195,6 +266,10 @@ def main():
             "frame_analyses": frame_analyses,
             "video_description": video_description
         }
+        
+        # Add screening results if two-stage analysis was used
+        if two_stage_enabled and screening_results:
+            results["screening_results"] = screening_results
         
         with open(output_dir / "analysis.json", "w") as f:
             json.dump(results, f, indent=2)
